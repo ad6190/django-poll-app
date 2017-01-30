@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from .models import Choice, Question
+from django.contrib.auth.decorators import login_required
 
 
 class IndexView(generic.ListView):
