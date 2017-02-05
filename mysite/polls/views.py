@@ -3,9 +3,9 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from .models import Choice, Question
+from .models import Choice, Question, ChoiceForm, ModelForm
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic.edit import CreateView
 
 class IndexView(generic.ListView):
 	template_name = 'polls/index.html'
@@ -53,3 +53,8 @@ def vote(request, question_id):
 		# with POST data. This prevents data from being posted twice if a
 		# user hits the Back button.
 		return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def AddQuestionView(request):
+    choice_form = ChoiceForm()
+
+    return render(request, 'polls/post_data.html', { 'choice_form': choice_form})

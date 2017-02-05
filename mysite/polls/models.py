@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.forms import ModelForm
 
 class Question(models.Model):
     question_text = models.CharField(max_length=300)
@@ -20,3 +21,15 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
     def __str__(self):
         return self.choice_text
+
+
+class ChoiceForm(ModelForm):
+    class Meta:
+        model = Choice
+        fields = '__all__'
+
+
+class QuestionForm(ModelForm):
+    class Meta:
+        model = Question
+        fields = '__all__'
